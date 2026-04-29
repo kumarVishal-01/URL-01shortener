@@ -104,6 +104,9 @@
   <body>
     <div class="container">
       <h1>Login</h1>
+      <% if (locals.error) { %>
+      <p style="color: #e53e3e; margin-bottom: 15px; font-size: 14px"><%= error %></p>
+      <% } %>
 
       <form action="/user/login" method="post">
         <label>Email</label>
