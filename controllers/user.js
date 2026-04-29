@@ -14,9 +14,19 @@ async function handleUserSignup(req, res) {
     res.cookie("token", token);
     return res.redirect("/");
   } catch (error) {
-    console.error("Signup Error:", error);
+    console.error("Signup Error Details:", error);
+    let errorMessage = "Error creating account. Please try again.";
+
+    if (error.code === 11000) {
+      errorMessage = "Email already in use. Please use a different email.";
+    } else if (error.name === "ValidationError") {
+      errorMessage = Object.values(error.errors).map(err => err.message).join(", ");
+    } else {
+      errorMessage = error.message; // Show the actual error message for debugging
+    }
+
     return res.render("signup", {
-      error: "Error creating account. Email might already be in use.",
+      error: errorMessage,
     });
   }
 }
