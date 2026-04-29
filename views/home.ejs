@@ -1,58 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <style>
-        body{
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-    </style>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
-</head>
-<body>
-    <h1>URL Shortener</h1>
-      <% if(locals.id){ %>
-         <p>Url Generated: http://localhost:8001/<%= id %></p>
-        <%}%>
-    <div>
-        <form method="post" action="/url">
-            <label>Enter your Original URL</label>
-            <input 
-            type="text" 
-            name="url" 
-            placeholder="https://example.com"/>
-           <button type="submit">Generate</button>
-        </form>
-    </div>
-    <div>
-        <% if (locals.urls) { %>
-         <table>
-            <thead>
-             <th>Sl. No</th>   
-             <th>ShortID</th>   
-             <th>Redirect</th>   
-             <th>Clicks</th>   
-            </thead>
-           <tbody>
-  <% urls.forEach((url, index) => { %>
-    <tr>
-      <td><%= index + 1 %></td>
-      <td><%= url.shortId %></td>
-      <td><%= url.redirectURL %></td>
-      <td><%= url.visitHistory.length %></td>
-    </tr>
-  <% }) %>
-</tbody>
-         </table>
-        <% } %>
-    </div>
-</body>
-</html> -->
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -92,9 +37,29 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
-        h1 {
-            text-align: center;
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 20px;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .logout-btn {
+            padding: 8px 16px;
+            background: #ff4d4d;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #cc0000;
         }
 
         .result {
@@ -177,7 +142,10 @@
 
 <body>
     <div class="container">
-        <h1>URL Shortener</h1>
+        <div class="header">
+            <h1>URL Shortener</h1>
+            <a href="/user/logout" class="logout-btn">Logout</a>
+        </div>
 
         <% if(locals.id){ %>
 <div class="result">
