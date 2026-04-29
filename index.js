@@ -12,7 +12,7 @@ const staticRoute = require("./routes/staticRouter");
 const userRoute = require("./routes/user");
 
 const app = express();
-const PORT = 8001;
+const PORT = process.env.PORT || 8001;
 
 connectMongoDb("mongodb://127.0.0.1:27017/short-url");
 
